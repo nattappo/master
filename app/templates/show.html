@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div class="container">
+ <table class="table table-hover">
+     
+      <thead>
+          <tr class="table-success">
+                <th style="text-align: center; vertical-align: middle;">ลำดับ</th>
+                <th style="text-align: center; vertical-align: middle;">รายการ</th>
+                <th style="text-align: center; vertical-align: middle;">จำนวนคงเหลือ</th>
+                <th style="text-align: center; vertical-align: middle;">หน่วย</th>
+                <th style="text-align: center; vertical-align: middle;">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in datas %}
+        <tr>
+            <td align = center>{{row.0}}</td>
+            <td align = center>{{row.1}}</td>
+            <td align = center>{{row.2}}</td>
+            <td align = center>{{row.3}}</td>
+            <td align = center>
+            <a href="/update" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
+            <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a>
+          </td>
+        </tr>
+        <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">อัพเดทข้อมูลของท่าน</h4>
+                    </div>
+                    <div class="modal-body">
+                      <form action="/update" method="POST">
+                        <div class="form-group">
+                          <label>รายการ:</label>
+                          <input type="hidden" name="ลำดับ" value="{{row.0}}">
+                          <input type="text" class="form-control" name="รายการ" value="{{row.1}}">
+                        </div>
+                        <div class="form-group">
+                          <label>จำนวน:</label>
+                          <input type="text" class="form-control" name="จำนวน" value="{{row.2}}">
+                        </div>
+                        <div class="form-group">
+                          <label>หน่วย</label>
+                          <input type="text" class="form-control" name="หน่วย" value="{{row.3}}">
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-primary" type="submit">อัพเดท</button>
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+          </div>
+        </div>
+        
+          {% endfor %}
+      </tbody>
+    </table>
+    <a href="/add" class="btn btn-primary">เพิ่มรายชื่อใหม่</a>
+</div>
+
+
+
+
+{% endblock %}
+   
