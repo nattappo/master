@@ -8,7 +8,8 @@
           <tr class="table-success">
                 <th style="text-align: center; vertical-align: middle;">ลำดับ</th>
                 <th style="text-align: center; vertical-align: middle;">รายการ</th>
-                <th style="text-align: center; vertical-align: middle;">จำนวนคงเหลือ</th>
+                <th style="text-align: center; vertical-align: middle;">จำนวน</th>
+                
                 <th style="text-align: center; vertical-align: middle;">หน่วย</th>
                 <th style="text-align: center; vertical-align: middle;">Action</th>
         </tr>
@@ -19,10 +20,11 @@
             <td align = center>{{row.0}}</td>
             <td align = center>{{row.1}}</td>
             <td align = center>{{row.2}}</td>
-            <td align = center>{{row.3}}</td>
+            
+            <td align = center>{{row.4}}</td>
             <td align = center>
-            <a href="/update" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">Edit</a>
-            <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">Delete</a>
+            <a href="/update" class="btn btn-warning btn-xs" data-toggle="modal" data-target="#modaledit{{row.0}}">แก้ไข</a>
+            <a href="/delete/{{ row.0 }}" class="btn btn-danger btn-xs" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่?')">ลบข้อมูล</a>
           </td>
         </tr>
         <div id="modaledit{{row.0}}" class="modal fade" role="dialog">
@@ -41,11 +43,11 @@
                         </div>
                         <div class="form-group">
                           <label>จำนวน:</label>
-                          <input type="text" class="form-control" name="จำนวน" value="{{row.2}}">
+                          <input type="text" class="form-control" name="จำนวนรายรับ" value="{{row.2}}">
                         </div>
                         <div class="form-group">
                           <label>หน่วย</label>
-                          <input type="text" class="form-control" name="หน่วย" value="{{row.3}}">
+                          <input type="text" class="form-control" name="หน่วย" value="{{row.4}}">
                         </div>
                         <div class="form-group">
                           <button class="btn btn-primary" type="submit">อัพเดท</button>
